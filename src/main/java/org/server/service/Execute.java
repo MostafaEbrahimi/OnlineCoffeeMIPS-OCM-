@@ -5,7 +5,9 @@ import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.json.JSONObject;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,23 +29,18 @@ public class Execute {
         jsonObject.put("coffee","Have a good coffee with coffee mips");
         return jsonObject.toString();
     }
-
-/*
     @POST
     @Timed
     @Path("/upload")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Produces(MediaType.APPLICATION_JSON)
     public String fileUpload(@FormDataParam("file") InputStream inputStream,
-                             @FormDataParam("file") final FormDataContentDisposition contentDispositionHeader){
-        try {
-            System.out.print(inputStream.read());
-            return new JSONObject().put("success","File successfully uploaded").toString();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return new JSONObject().put("error","Cannot get File").toString();
+                             @FormDataParam("file") FormDataContentDisposition contentDispositionHeader,
+                             @Context HttpServletResponse response){
+        String me=inputStream.toString();
+        System.out.print(inputStream.toString());
+        return new JSONObject().put("success","File successfully uploaded").toString();
+
     }
-    //*/
 
 }

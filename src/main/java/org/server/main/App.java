@@ -1,6 +1,8 @@
 package org.server.main;
+
 import io.dropwizard.Application;
 import io.dropwizard.setup.Environment;
+import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import org.server.service.Execute;
 
 /**
@@ -13,7 +15,9 @@ public class App extends Application<Config> {
 
     @Override
     public void run(Config config, Environment env) {
-        Execute execute = new Execute();
+        env.jersey().register(MultiPartFeature.class);
+//        env.jersey().register(MultiPartConfigProvider.class);
+        Execute execute=new Execute();
         env.jersey().register(execute);
     }
 }

@@ -1,5 +1,6 @@
 package org.server.main;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import io.dropwizard.Configuration;
 import org.hibernate.validator.constraints.NotEmpty;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -19,4 +20,5 @@ public class Config extends Configuration{
     public void setVersion(String version) {
         this.version = version;
     }
+
 }
