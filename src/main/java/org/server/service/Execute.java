@@ -1,10 +1,14 @@
 package org.server.service;
 
 import com.codahale.metrics.annotation.Timed;
+import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
+import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.json.JSONObject;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.io.IOException;
+import java.io.InputStream;
 
 
 /**
@@ -12,7 +16,6 @@ import javax.ws.rs.core.MediaType;
  */
 @Path("/execute")
 public class Execute {
-
 
     @GET
     @Timed
@@ -24,14 +27,15 @@ public class Execute {
         jsonObject.put("coffee","Have a good coffee with coffee mips");
         return jsonObject.toString();
     }
-/*
 
+/*
     @POST
     @Timed
     @Path("/upload")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Produces(MediaType.APPLICATION_JSON)
-    public String fileUpload(@FormDataParam("file") InputStream inputStream){
+    public String fileUpload(@FormDataParam("file") InputStream inputStream,
+                             @FormDataParam("file") final FormDataContentDisposition contentDispositionHeader){
         try {
             System.out.print(inputStream.read());
             return new JSONObject().put("success","File successfully uploaded").toString();
@@ -40,7 +44,6 @@ public class Execute {
         }
         return new JSONObject().put("error","Cannot get File").toString();
     }
-*/
-    //@FormDataParam("file") final FormDataContentDisposition contentDispositionHeader
+    //*/
 
 }

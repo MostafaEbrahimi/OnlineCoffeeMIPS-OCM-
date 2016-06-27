@@ -13,7 +13,7 @@ public class App extends Application<Config> {
 
     @Override
     public void run(Config config, Environment env) {
-        final Execute execute = new Execute();
+        Execute execute = new Execute();
         env.jersey().register(execute);
     }
 }

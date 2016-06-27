@@ -1,10 +1,10 @@
 version: 0.0.1
 
-# Change default main ports
+# Change default server ports
 server:
   applicationConnectors:
   - type: http
-    port: 8569
+    port: 9000
   adminConnectors:
   - type: http
-    port: 8570
+    port: 9001
