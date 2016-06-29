@@ -4,6 +4,7 @@ package org.server.service;
 import com.codahale.metrics.annotation.Timed;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
+import org.glassfish.jersey.server.SubjectSecurityContext;
 import org.json.JSONObject;
 import org.server.biz.Main;
 
@@ -138,5 +139,14 @@ public class Execute {
         return  new JSONObject().put("success","system was reset reset").toString();
     }
 
+    @POST
+    @Timed
+    @Path("/getcode")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public String getCode(@FormDataParam("data") FormDataParam dataParam){
+        System.out.println("");
+        return null;
+    }
 
 }
