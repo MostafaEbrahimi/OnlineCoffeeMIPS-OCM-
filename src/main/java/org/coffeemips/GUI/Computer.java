@@ -43,8 +43,8 @@ public class Computer {
     String filePath = null;
     private String memory;
     private boolean runable;
-    int lineOfInstructions;
-    int currentLineOfInstructions;
+    private int lineOfInstructions;
+    private int currentLineOfInstructions;
     boolean modeBit;
     boolean interruptBit;
     int interruptReason;
@@ -58,11 +58,35 @@ public class Computer {
     MEM_WB memwb;
 
     IF stage_if;
-    ID stage_id;
+    private ID stage_id;
     EXE stage_exe;
     MEM stage_mem;
     WB stage_wb;
     AddressAllocator aa;
+
+    public ID getStage_id() {
+        return stage_id;
+    }
+
+    public void setStage_id(ID stage_id) {
+        this.stage_id = stage_id;
+    }
+
+    public int getLineOfInstructions() {
+        return lineOfInstructions;
+    }
+
+    public void setLineOfInstructions(int lineOfInstructions) {
+        this.lineOfInstructions = lineOfInstructions;
+    }
+
+    public int getCurrentLineOfInstructions() {
+        return currentLineOfInstructions;
+    }
+
+    public void setCurrentLineOfInstructions(int currentLineOfInstructions) {
+        this.currentLineOfInstructions = currentLineOfInstructions;
+    }
 
     public AddressAllocator getAa(){
         return this.aa;

@@ -538,7 +538,7 @@ public class Main extends javax.swing.JFrame {
     }
 
     private void execAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_execAllActionPerformed
-        while (computer.currentLineOfInstructions < computer.lineOfInstructions) {
+        while (computer.getCurrentLineOfInstructions() < computer.getLineOfInstructions()) {
             computer.runSingleSycle();
         }
         computer.fix_memory_table(memoryTable);

@@ -2,6 +2,8 @@ package org.coffeemips.Assembler;
 
 //Alireza Hafez 3/28/2015
 //new MIPS assembler
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -341,6 +343,7 @@ public class Assembler {
         initInstructionCodes();
         initInstructions();
         initRegisterCodes();
+
 
         file = new File(filename);
 
