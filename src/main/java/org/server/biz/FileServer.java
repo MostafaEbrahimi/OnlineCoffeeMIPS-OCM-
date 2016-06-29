@@ -3,6 +3,7 @@ package org.server.biz;
 import org.apache.commons.io.IOUtils;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 /**
  * Created by Mostafa on 6/28/2016.
@@ -78,6 +79,11 @@ public class FileServer {
         return null;
     }
 
+    public static InputStream convertStringToInputStream(String string){
+        InputStream inputStream=new ByteArrayInputStream(string.getBytes(StandardCharsets.UTF_8));
+        return inputStream;
+    }
+
     /**
      * get root path of the
      * file-server directory
@@ -94,4 +100,6 @@ public class FileServer {
     public void setRootPath(String rootPath) {
         this.rootPath = rootPath;
     }
+
+
 }
