@@ -78,14 +78,15 @@ public class Execute {
      * @return String
      */
     @GET
-    @Path("/run")
+    @Path("/getresgisters")
     @Produces(MediaType.APPLICATION_JSON)
     public String getRegistersOfLastFileUploaded(@Context HttpServletRequest request){
         if(!debugMode){
             if(main==null){
                 return new JSONObject().put("error","cannot load your file").toString();
             }
-            return main.runRun(main.getFilepath()).toString();
+//            return main.runRun(main.getFilepath()).toString();
+            return "{}";
         }
         return new JSONObject().put("debugeMode","debug mode is enable please disable it").toString();
     }
@@ -104,6 +105,9 @@ public class Execute {
         if(this.main.getLastRegistersState()!=null){
             return main.getLastRegistersState().toString();
         }
+        if(main.getLastRegistersState()!=null){
+            return new JSONObject().put("error","code not been run").toString();
+        }
         return new JSONObject().put("registerLastState","[]").toString();
     }
 
@@ -118,8 +122,11 @@ public class Execute {
     @Path("/getmemory")
     @Produces(MediaType.APPLICATION_JSON)
     public String getMemoryLastState(@Context HttpServletRequest request){
-        if(main!=null){
+        if(main==null){
             return new JSONObject().put("error","nothing executed").toString();
+        }
+        if(main.getLastMemoryState()==null){
+            return new JSONObject().put("error","code not been run").toString();
         }
         return main.getLastMemoryState().toString();
     }
@@ -191,7 +198,7 @@ public class Execute {
 
     /**
      * receive code from client
-     * in json object
+     * in json object and run it
      * @param sample
      * @param request
      * @return assembledInstructions
@@ -207,6 +214,16 @@ public class Execute {
         }
         InputStream is=FileServer.convertStringToInputStream(code);
         return this.main.runAssemble(is,null).toString();
+    }
+
+    @GET
+    @Path("/run")
+    public String run(@Context HttpServletRequest request){
+        if(main!=null){
+            main.runAllOfAction(main.getFilepath());
+            return new JSONObject().put("success","run this method").toString();
+        }
+        return new JSONObject().put("error","no code for run").toString();
     }
 
 

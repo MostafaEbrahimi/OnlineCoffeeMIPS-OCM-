@@ -141,21 +141,28 @@ public class Main {
     }
 
 
-
-    //TODO add instruction
-    public void runAllOfAction(){
+    /**
+     * execute all of instruction
+     * and set registers and memories
+     */
+    public void runAllOfAction(String filepath){
+        this.runRun(filepath);
         while (computer.getCurrentLineOfInstructions() < computer.getLineOfInstructions()) {
             computer.runSingleSycle();
         }
+        this.lastRegistersState=this.getRegisterFile();
+        this.lastMemoryState=this.getMemoryValues();
     }
 
-
-    public JSONArray runRun(String filePath){
+    /**
+     * Not In My Business
+     * @param filePath
+     * @return successfully_OR_not
+     */
+    public void runRun(String filePath){
         if (computer.isRunable()) {
             computer.run_init(filePath,lineOfInstructions);
-            return getRegisterFile();
         }
-        return new JSONArray();
     }
 
     /**
@@ -221,5 +228,9 @@ public class Main {
 
     public JSONArray getLastMemoryState() {
         return lastMemoryState;
+    }
+
+    public Computer getComputer() {
+        return computer;
     }
 }
